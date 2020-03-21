@@ -1,29 +1,12 @@
 
 import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
+import authReducer from './authReducer';
+import streamReducer from './streamReducer';
 
-// The Count Reducer Should be separated for Lone File
-const initialState = {
-    count: 0
-}
-const countReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case 'INCREMENT':
-            return {
-                count: state.count + 1
-            }
-        case 'DECREMENT':
-            return {
-                count: state.count - 1
-            }
-        case 'RESET':
-            return {
-                count: 0
-            }
-        default:
-            return state
-    }
-}
 
 export default combineReducers({
-    count: countReducer
-})
+    auth: authReducer,
+    form: formReducer,
+    streams: streamReducer
+});

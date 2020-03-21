@@ -1,22 +1,34 @@
 import React from 'react';
-import Counter from './Counter';
+import { Router, Route, Switch } from 'react-router-dom';
+
+import StreamList from './streams/StreamList';
+import StreamCreate from './streams/StreamCreate';
+import StreamShow from './streams/StreamShow';
+import StreamEdit from './streams/StreamEdit';
+import StreamDelete from './streams/StreamDelete';
+import Header from '../components/Header';
+import ErrorPage from './ErrorPage';
+import history from '../browserHistory';
+
 
 const App = () => {
     return (
         <>
-            {/* Starting Greeting Here */}
-            <div className="container-fluid">
-                <div className="row">
-                    <div className="text-center col-sm-12">
-                        <h1 className="h2 mt-5">React & Redux Refresher</h1>
-                    </div>
+            {/* Adding The Routing End Points Here */}
+            <Router history={history}>
+                <div>
+                    <Header />
+                    <Switch>
+                        <Route exact path="/" component={StreamList} />
+                        <Route exact path="/streams/new" component={StreamCreate} />
+                        <Route exact path="/streams/show/:id" component={StreamShow} />
+                        <Route exact path="/streams/edit/:id" component={StreamEdit} />
+                        <Route exact path="/streams/delete/:id" component={StreamDelete} />
+                        <Route component={ErrorPage} />
+                    </Switch>
                 </div>
-            </div>
-            {/* Ending Greeting Here */}
-
-            {/* Starting The Counter Component Here */}
-            <Counter />
-            {/* Starting The Counter Component Here */}
+            </Router>
+            {/* Adding The Routing End Points Here */}
         </>
     );
 }
